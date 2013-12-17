@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections;
-//Again
+
 namespace mysqlCSharp
 {
     public partial class dbConnector : Form
