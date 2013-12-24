@@ -81,7 +81,7 @@ namespace mysqlCSharp
         public void listTables()
         {
             MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "show tables";
+            cmd.CommandText = "SHOW TABLES";
             logger.Items.Add(cmd.CommandText);
             try
             {
@@ -183,6 +183,21 @@ namespace mysqlCSharp
                 command.CommandText = testTable;
                 logger.Items.Add(command.CommandText);
                 command.ExecuteNonQuery();
+            }
+
+        }
+
+        private void ctID1_Click(object sender, EventArgs e)
+        {
+            //CREATE table call5101Y select * from callspan((Yüzde 75 olan) where person_oid = 51 order by (RAND) LIMIT 270
+            //240 defa dönecek for loopu limit 18 diğerinde
+            // Test % 25 olacak limit
+            // select person_oid,count(*) from callspan;
+            // 25lik kısmı 170 kullanıcı altında olan varsa callspan için kod yazılacak
+            //select a.starttime,count(*) from cellspan as b, callspan as a where b.starttime<a.starttime and a.starttime<b.endtime and a.person_oid= 7 and b.person_oid=7 group by a.starttime
+            for (int j = 0; j < usersSelected.Items.Count; j++)
+            {
+                
             }
 
         }

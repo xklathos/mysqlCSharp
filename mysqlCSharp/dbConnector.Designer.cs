@@ -48,6 +48,8 @@
             this.testButton = new System.Windows.Forms.Button();
             this.logger = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ctID1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -232,12 +234,12 @@
             // testButton
             // 
             this.testButton.Enabled = false;
-            this.testButton.Location = new System.Drawing.Point(470, 330);
+            this.testButton.Location = new System.Drawing.Point(834, 282);
             this.testButton.Margin = new System.Windows.Forms.Padding(4);
             this.testButton.Name = "testButton";
             this.testButton.Size = new System.Drawing.Size(160, 28);
             this.testButton.TabIndex = 17;
-            this.testButton.Text = "Create Table";
+            this.testButton.Text = "Create tbl User";
             this.testButton.UseVisualStyleBackColor = true;
             this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
@@ -253,6 +255,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.usrName);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.submit);
@@ -264,18 +267,40 @@
             this.panel1.Controls.Add(this.dbName);
             this.panel1.Controls.Add(this.portBox);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(16, 15);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.panel1.Location = new System.Drawing.Point(13, 50);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 242);
+            this.panel1.Size = new System.Drawing.Size(267, 260);
             this.panel1.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(325, 357);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "SQL Query Logs";
+            // 
+            // ctID1
+            // 
+            this.ctID1.Location = new System.Drawing.Point(834, 50);
+            this.ctID1.Name = "ctID1";
+            this.ctID1.Size = new System.Drawing.Size(160, 23);
+            this.ctID1.TabIndex = 21;
+            this.ctID1.Text = "CTID Filler";
+            this.ctID1.UseVisualStyleBackColor = true;
+            this.ctID1.Click += new System.EventHandler(this.ctID1_Click);
             // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(810, 525);
+            this.ClientSize = new System.Drawing.Size(1049, 525);
+            this.Controls.Add(this.ctID1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logger);
             this.Controls.Add(this.testButton);
@@ -291,6 +316,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -316,6 +342,8 @@
         private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.ListBox logger;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button ctID1;
     }
 }
 
