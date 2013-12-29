@@ -51,6 +51,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ctID1 = new System.Windows.Forms.Button();
             this.fillCTID = new System.Windows.Forms.Button();
+            this.dividerSmall = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -282,12 +283,23 @@
             this.fillCTID.UseVisualStyleBackColor = true;
             this.fillCTID.Click += new System.EventHandler(this.fillCTID_Click);
             // 
+            // dividerSmall
+            // 
+            this.dividerSmall.Location = new System.Drawing.Point(626, 94);
+            this.dividerSmall.Name = "dividerSmall";
+            this.dividerSmall.Size = new System.Drawing.Size(120, 23);
+            this.dividerSmall.TabIndex = 23;
+            this.dividerSmall.Text = "Divide 4x4";
+            this.dividerSmall.UseVisualStyleBackColor = true;
+            this.dividerSmall.Click += new System.EventHandler(this.dividerSmall_Click);
+            // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(787, 434);
+            this.Controls.Add(this.dividerSmall);
             this.Controls.Add(this.fillCTID);
             this.Controls.Add(this.ctID1);
             this.Controls.Add(this.label6);
@@ -335,6 +347,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ctID1;
         private System.Windows.Forms.Button fillCTID;
+        private System.Windows.Forms.Button dividerSmall;
     }
 }
 

@@ -241,6 +241,70 @@ namespace mysqlCSharp
 
         }
 
+        private void dividerSmall_Click(object sender, EventArgs e)
+        {
+            
+            string tblName1 = "callspan16";
+            string tblName2 = "cellspan16";
+            string tblName3 = "callspan";
+            string tblName4 = "cellspan";
+            string tblName5 = "activityspan";
+            string tblName6 = "devicespan";
+
+            for (int j = 0; j < usersSelected.Items.Count; j++)
+            {
+                string tempUser = selectedUsers[j].ToString();
+                MySqlCommand command3 = connection.CreateCommand();
+                string createTable;
+                createTable = "CREATE TABLE " + tblName3 + tempUser + " LIKE " + tblName3 + ";";
+                command3.CommandText = createTable;
+                logger.Items.Add(command3.CommandText);
+                command3.ExecuteNonQuery();
+                createTable = "CREATE TABLE " + tblName4 + tempUser + " LIKE " + tblName4 + ";";
+                command3.CommandText = createTable;
+                logger.Items.Add(command3.CommandText);
+                command3.ExecuteNonQuery();
+                createTable = "CREATE TABLE " + tblName5 + tempUser + " LIKE " + tblName5 + ";";
+                command3.CommandText = createTable;
+                logger.Items.Add(command3.CommandText);
+                command3.ExecuteNonQuery();
+                createTable = "CREATE TABLE " + tblName6 + tempUser + " LIKE " + tblName6 + ";";
+                command3.CommandText = createTable;
+                logger.Items.Add(command3.CommandText);
+                command3.ExecuteNonQuery();
+            }
+
+            for (int j = 0; j < usersSelected.Items.Count; j++)
+            {
+
+
+                MySqlCommand command = connection.CreateCommand();
+                string tempUser = selectedUsers[j].ToString();
+                string InsertData;
+                InsertData = "INSERT INTO " + tblName3 + tempUser + " SELECT * FROM " + tblName1 + " WHERE person_oid=" + tempUser + " ORDER BY starttime;";
+                command.CommandText = InsertData;
+                logger.Items.Add(command.CommandText);
+                command.ExecuteNonQuery();
+                InsertData = "INSERT INTO " + tblName4 + tempUser + " SELECT * FROM " + tblName4 + " WHERE person_oid=" + tempUser + " ORDER BY starttime;";
+                command.CommandText = InsertData;
+                logger.Items.Add(command.CommandText);
+                command.ExecuteNonQuery();
+                InsertData = "INSERT INTO " + tblName5 + tempUser + " SELECT * FROM " + tblName5 + " WHERE person_oid=" + tempUser + " ORDER BY starttime;";
+                command.CommandText = InsertData;
+                logger.Items.Add(command.CommandText);
+                command.ExecuteNonQuery();
+                InsertData = "INSERT INTO " + tblName6 + tempUser + " SELECT * FROM " + tblName6 + " WHERE person_oid=" + tempUser + " ORDER BY starttime;";
+                command.CommandText = InsertData;
+                logger.Items.Add(command.CommandText);
+                command.ExecuteNonQuery();
+
+
+
+            }
+
+        }
+
+
     }
 }
 
