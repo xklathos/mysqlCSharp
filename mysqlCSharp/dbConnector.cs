@@ -195,9 +195,48 @@ namespace mysqlCSharp
             // select person_oid,count(*) from callspan;
             // 25lik kısmı 170 kullanıcı altında olan varsa callspan için kod yazılacak
             //select a.starttime,count(*) from cellspan as b, callspan as a where b.starttime<a.starttime and a.starttime<b.endtime and a.person_oid= 7 and b.person_oid=7 group by a.starttime
+           
+            MySqlCommand command = connection.CreateCommand();
+            string tableName = listTable.Text;
+            string createTable = "CREATE TABLE " + tableName+"16 LIKE " + tableName + ";";
+            command.CommandText = createTable;
+            logger.Items.Add(command.CommandText);
+            command.ExecuteNonQuery();
+
+
             for (int j = 0; j < usersSelected.Items.Count; j++)
             {
+
+                MySqlCommand command2 = connection.CreateCommand();
+                string tempUser = selectedUsers[j].ToString();
+                string InsertData = "INSERT INTO " + tableName+"16 SELECT * FROM " + tableName + " WHERE person_oid=" +tempUser+ " ORDER BY starttime;";
+                string item = usersSelected.Items[j].ToString();
+                command2.CommandText = InsertData;
+                logger.Items.Add(command2.CommandText);
+                command2.ExecuteNonQuery();
                 
+               // MessageBox.Show("This is "+ selectedUsers[j]);
+
+            }
+
+        }
+
+        private void fillCTID_Click(object sender, EventArgs e)
+        {
+
+           for (int j = 0; j < usersSelected.Items.Count; j++)
+            {
+
+                MySqlCommand command2 = connection.CreateCommand();
+                string tempUser = selectedUsers[j].ToString();
+                string InsertData = "update callspan16 as a set ctid = if((select celltower_oid from cellspan16 where starttime<a.starttime and a.starttime<endtime and person_oid=a.person_oid)=null ,Null, (select celltower_oid from cellspan16 where starttime<a.starttime and a.starttime<endtime and person_oid=a.person_oid)) where person_oid="+tempUser;
+                string item = usersSelected.Items[j].ToString();
+                command2.CommandText = InsertData;
+                logger.Items.Add(command2.CommandText);
+                command2.ExecuteNonQuery();
+
+                // MessageBox.Show("This is "+ selectedUsers[j]);
+
             }
 
         }

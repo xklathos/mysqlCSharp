@@ -50,26 +50,25 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.ctID1 = new System.Windows.Forms.Button();
+            this.fillCTID = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(25, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 17);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Server";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // submit
             // 
-            this.submit.Location = new System.Drawing.Point(111, 199);
-            this.submit.Margin = new System.Windows.Forms.Padding(4);
+            this.submit.Location = new System.Drawing.Point(83, 162);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(93, 28);
+            this.submit.Size = new System.Drawing.Size(70, 23);
             this.submit.TabIndex = 1;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = true;
@@ -77,97 +76,87 @@
             // 
             // srvName
             // 
-            this.srvName.Location = new System.Drawing.Point(111, 20);
-            this.srvName.Margin = new System.Windows.Forms.Padding(4);
+            this.srvName.Location = new System.Drawing.Point(83, 16);
             this.srvName.Name = "srvName";
-            this.srvName.Size = new System.Drawing.Size(125, 22);
+            this.srvName.Size = new System.Drawing.Size(95, 20);
             this.srvName.TabIndex = 2;
             this.srvName.Text = "localhost";
             // 
             // usrName
             // 
-            this.usrName.Location = new System.Drawing.Point(111, 52);
-            this.usrName.Margin = new System.Windows.Forms.Padding(4);
+            this.usrName.Location = new System.Drawing.Point(83, 42);
             this.usrName.Name = "usrName";
-            this.usrName.Size = new System.Drawing.Size(125, 22);
+            this.usrName.Size = new System.Drawing.Size(95, 20);
             this.usrName.TabIndex = 4;
             this.usrName.Text = "root";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 55);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(25, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 17);
+            this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "user";
             // 
             // pass
             // 
-            this.pass.Location = new System.Drawing.Point(111, 84);
-            this.pass.Margin = new System.Windows.Forms.Padding(4);
+            this.pass.Location = new System.Drawing.Point(83, 68);
             this.pass.Name = "pass";
-            this.pass.Size = new System.Drawing.Size(125, 22);
+            this.pass.Size = new System.Drawing.Size(95, 20);
             this.pass.TabIndex = 6;
             this.pass.Text = "root";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 87);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(25, 71);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 17);
+            this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "pass";
             // 
             // dbName
             // 
-            this.dbName.Location = new System.Drawing.Point(111, 116);
-            this.dbName.Margin = new System.Windows.Forms.Padding(4);
+            this.dbName.Location = new System.Drawing.Point(83, 94);
             this.dbName.Name = "dbName";
-            this.dbName.Size = new System.Drawing.Size(125, 22);
+            this.dbName.Size = new System.Drawing.Size(95, 20);
             this.dbName.TabIndex = 8;
             this.dbName.Text = "mit";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 119);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(25, 97);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 17);
+            this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "dbName";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 153);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(25, 124);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 17);
+            this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "port";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // portBox
             // 
-            this.portBox.Location = new System.Drawing.Point(111, 153);
-            this.portBox.Margin = new System.Windows.Forms.Padding(4);
+            this.portBox.Location = new System.Drawing.Point(83, 124);
             this.portBox.Name = "portBox";
-            this.portBox.Size = new System.Drawing.Size(125, 22);
+            this.portBox.Size = new System.Drawing.Size(95, 20);
             this.portBox.TabIndex = 10;
             this.portBox.Text = "3306";
             // 
             // getTbls
             // 
             this.getTbls.Enabled = false;
-            this.getTbls.Location = new System.Drawing.Point(328, 15);
-            this.getTbls.Margin = new System.Windows.Forms.Padding(4);
+            this.getTbls.Location = new System.Drawing.Point(246, 12);
             this.getTbls.Name = "getTbls";
-            this.getTbls.Size = new System.Drawing.Size(100, 28);
+            this.getTbls.Size = new System.Drawing.Size(75, 23);
             this.getTbls.TabIndex = 11;
             this.getTbls.Text = "Get Tables";
             this.getTbls.UseVisualStyleBackColor = true;
@@ -176,20 +165,17 @@
             // listTable
             // 
             this.listTable.FormattingEnabled = true;
-            this.listTable.ItemHeight = 16;
-            this.listTable.Location = new System.Drawing.Point(303, 50);
-            this.listTable.Margin = new System.Windows.Forms.Padding(4);
+            this.listTable.Location = new System.Drawing.Point(227, 41);
             this.listTable.Name = "listTable";
-            this.listTable.Size = new System.Drawing.Size(159, 260);
+            this.listTable.Size = new System.Drawing.Size(120, 212);
             this.listTable.TabIndex = 12;
             // 
             // getData
             // 
             this.getData.Enabled = false;
-            this.getData.Location = new System.Drawing.Point(495, 15);
-            this.getData.Margin = new System.Windows.Forms.Padding(4);
+            this.getData.Location = new System.Drawing.Point(371, 12);
             this.getData.Name = "getData";
-            this.getData.Size = new System.Drawing.Size(100, 28);
+            this.getData.Size = new System.Drawing.Size(75, 23);
             this.getData.TabIndex = 13;
             this.getData.Text = "Get Data";
             this.getData.UseVisualStyleBackColor = true;
@@ -198,22 +184,19 @@
             // personOidList
             // 
             this.personOidList.FormattingEnabled = true;
-            this.personOidList.ItemHeight = 16;
-            this.personOidList.Location = new System.Drawing.Point(471, 50);
-            this.personOidList.Margin = new System.Windows.Forms.Padding(4);
+            this.personOidList.Location = new System.Drawing.Point(353, 41);
             this.personOidList.MultiColumn = true;
             this.personOidList.Name = "personOidList";
             this.personOidList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.personOidList.Size = new System.Drawing.Size(159, 260);
+            this.personOidList.Size = new System.Drawing.Size(120, 212);
             this.personOidList.TabIndex = 14;
             // 
             // selectUsers
             // 
             this.selectUsers.Enabled = false;
-            this.selectUsers.Location = new System.Drawing.Point(663, 15);
-            this.selectUsers.Margin = new System.Windows.Forms.Padding(4);
+            this.selectUsers.Location = new System.Drawing.Point(497, 12);
             this.selectUsers.Name = "selectUsers";
-            this.selectUsers.Size = new System.Drawing.Size(100, 28);
+            this.selectUsers.Size = new System.Drawing.Size(75, 23);
             this.selectUsers.TabIndex = 15;
             this.selectUsers.Text = "Select Users";
             this.selectUsers.UseVisualStyleBackColor = true;
@@ -223,21 +206,18 @@
             // 
             this.usersSelected.Enabled = false;
             this.usersSelected.FormattingEnabled = true;
-            this.usersSelected.ItemHeight = 16;
-            this.usersSelected.Location = new System.Drawing.Point(639, 50);
-            this.usersSelected.Margin = new System.Windows.Forms.Padding(4);
+            this.usersSelected.Location = new System.Drawing.Point(479, 41);
             this.usersSelected.Name = "usersSelected";
             this.usersSelected.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.usersSelected.Size = new System.Drawing.Size(159, 260);
+            this.usersSelected.Size = new System.Drawing.Size(120, 212);
             this.usersSelected.TabIndex = 16;
             // 
             // testButton
             // 
             this.testButton.Enabled = false;
-            this.testButton.Location = new System.Drawing.Point(834, 282);
-            this.testButton.Margin = new System.Windows.Forms.Padding(4);
+            this.testButton.Location = new System.Drawing.Point(626, 229);
             this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(160, 28);
+            this.testButton.Size = new System.Drawing.Size(120, 23);
             this.testButton.TabIndex = 17;
             this.testButton.Text = "Create tbl User";
             this.testButton.UseVisualStyleBackColor = true;
@@ -246,11 +226,9 @@
             // logger
             // 
             this.logger.FormattingEnabled = true;
-            this.logger.ItemHeight = 16;
-            this.logger.Location = new System.Drawing.Point(16, 378);
-            this.logger.Margin = new System.Windows.Forms.Padding(4);
+            this.logger.Location = new System.Drawing.Point(12, 307);
             this.logger.Name = "logger";
-            this.logger.Size = new System.Drawing.Size(781, 132);
+            this.logger.Size = new System.Drawing.Size(587, 108);
             this.logger.TabIndex = 18;
             // 
             // panel1
@@ -268,37 +246,49 @@
             this.panel1.Controls.Add(this.portBox);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panel1.Location = new System.Drawing.Point(13, 50);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(10, 41);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 260);
+            this.panel1.Size = new System.Drawing.Size(201, 212);
             this.panel1.TabIndex = 19;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(325, 357);
+            this.label6.Location = new System.Drawing.Point(244, 290);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.Size = new System.Drawing.Size(85, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "SQL Query Logs";
             // 
             // ctID1
             // 
-            this.ctID1.Location = new System.Drawing.Point(834, 50);
+            this.ctID1.Location = new System.Drawing.Point(626, 41);
+            this.ctID1.Margin = new System.Windows.Forms.Padding(2);
             this.ctID1.Name = "ctID1";
-            this.ctID1.Size = new System.Drawing.Size(160, 23);
+            this.ctID1.Size = new System.Drawing.Size(120, 19);
             this.ctID1.TabIndex = 21;
-            this.ctID1.Text = "CTID Filler";
+            this.ctID1.Text = "Divide 16";
             this.ctID1.UseVisualStyleBackColor = true;
             this.ctID1.Click += new System.EventHandler(this.ctID1_Click);
             // 
+            // fillCTID
+            // 
+            this.fillCTID.Location = new System.Drawing.Point(626, 65);
+            this.fillCTID.Name = "fillCTID";
+            this.fillCTID.Size = new System.Drawing.Size(120, 23);
+            this.fillCTID.TabIndex = 22;
+            this.fillCTID.Text = "Fill CTID";
+            this.fillCTID.UseVisualStyleBackColor = true;
+            this.fillCTID.Click += new System.EventHandler(this.fillCTID_Click);
+            // 
             // dbConnector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1049, 525);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(787, 434);
+            this.Controls.Add(this.fillCTID);
             this.Controls.Add(this.ctID1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
@@ -310,9 +300,9 @@
             this.Controls.Add(this.getData);
             this.Controls.Add(this.listTable);
             this.Controls.Add(this.getTbls);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "dbConnector";
-            this.Text = "DbConnecter";
+            this.Text = "Fill CTID";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -344,6 +334,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ctID1;
+        private System.Windows.Forms.Button fillCTID;
     }
 }
 
