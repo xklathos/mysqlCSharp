@@ -45,13 +45,13 @@
             this.personOidList = new System.Windows.Forms.ListBox();
             this.selectUsers = new System.Windows.Forms.Button();
             this.usersSelected = new System.Windows.Forms.ListBox();
-            this.testButton = new System.Windows.Forms.Button();
             this.logger = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.ctID1 = new System.Windows.Forms.Button();
             this.fillCTID = new System.Windows.Forms.Button();
             this.dividerSmall = new System.Windows.Forms.Button();
+            this.tAndS = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,17 +213,6 @@
             this.usersSelected.Size = new System.Drawing.Size(120, 212);
             this.usersSelected.TabIndex = 16;
             // 
-            // testButton
-            // 
-            this.testButton.Enabled = false;
-            this.testButton.Location = new System.Drawing.Point(626, 229);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(120, 23);
-            this.testButton.TabIndex = 17;
-            this.testButton.Text = "Create tbl User";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
-            // 
             // logger
             // 
             this.logger.FormattingEnabled = true;
@@ -293,19 +282,29 @@
             this.dividerSmall.UseVisualStyleBackColor = true;
             this.dividerSmall.Click += new System.EventHandler(this.dividerSmall_Click);
             // 
+            // tAndS
+            // 
+            this.tAndS.Location = new System.Drawing.Point(626, 123);
+            this.tAndS.Name = "tAndS";
+            this.tAndS.Size = new System.Drawing.Size(120, 23);
+            this.tAndS.TabIndex = 24;
+            this.tAndS.Text = "Divide T and S";
+            this.tAndS.UseVisualStyleBackColor = true;
+            this.tAndS.Click += new System.EventHandler(this.tAndS_Click);
+            // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(787, 434);
+            this.Controls.Add(this.tAndS);
             this.Controls.Add(this.dividerSmall);
             this.Controls.Add(this.fillCTID);
             this.Controls.Add(this.ctID1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logger);
-            this.Controls.Add(this.testButton);
             this.Controls.Add(this.usersSelected);
             this.Controls.Add(this.selectUsers);
             this.Controls.Add(this.personOidList);
@@ -341,13 +340,13 @@
         private System.Windows.Forms.ListBox personOidList;
         private System.Windows.Forms.Button selectUsers;
         private System.Windows.Forms.ListBox usersSelected;
-        private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.ListBox logger;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ctID1;
         private System.Windows.Forms.Button fillCTID;
         private System.Windows.Forms.Button dividerSmall;
+        private System.Windows.Forms.Button tAndS;
     }
 }
 
