@@ -315,10 +315,14 @@ namespace mysqlCSharp
             for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
             {
 
-
-                string tempUser = selectedUsers[j].ToString();
-                MySqlCommand command = connection.CreateCommand();
+                string createTable;
+                string InsertData;
+                string alterData;
                 string sql;
+                string tempUser = selectedUsers[j].ToString();
+                
+                MySqlCommand command = connection.CreateCommand();
+                
                 // Callspan
                 sql = "SELECT COUNT(*) FROM " + tblName3 + " where person_oid ="+tempUser+";";
                 command.CommandText = sql;               
@@ -344,7 +348,6 @@ namespace mysqlCSharp
                 // TABLO OLUŞTURMA T VE S OLARAK
 
                 MySqlCommand command3 = connection.CreateCommand();
-                string createTable;
 
                 // % 75 Tabloları
 
@@ -406,17 +409,72 @@ namespace mysqlCSharp
                 //ALTER Table call4t order by starttime;
 
                 MySqlCommand command4 = connection.CreateCommand();
-                string InsertData;
-                InsertData = "INSERT INTO " + tblName3 + tempUser + "T SELECT * FROM " + tblName3 + " WHERE person_oid=" + tempUser + " ORDER BY starttime;";
+
+
+                // T lerinin yapılması
+                InsertData = "INSERT INTO " + tblName3 + tempUser + "T SELECT * FROM " + tblName3 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT "+rowsCallT+";";
                 command4.CommandText = InsertData;
                 logger.Items.Add(command4.CommandText);
                 command4.ExecuteNonQuery();
 
-            }
+                InsertData = "INSERT INTO " + tblName4 + tempUser + "T SELECT * FROM " + tblName4 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT " + rowsCellT + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
 
-            for (int j = 0; j < usersSelected.Items.Count; j++)
-            {
+                InsertData = "INSERT INTO " + tblName5 + tempUser + "T SELECT * FROM " + tblName5 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT " + rowsActivityT + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
 
+                InsertData = "INSERT INTO " + tblName6 + tempUser + "T SELECT * FROM " + tblName6 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT " + rowsDeviceT + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                // S lerinin yapılması
+                InsertData = "INSERT INTO " + tblName3 + tempUser + "S SELECT * FROM " + tblName3 + " WHERE person_oid=" + tempUser + " ORDER BY starttime DESC LIMIT " + rowsCallS + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                InsertData = "INSERT INTO " + tblName4 + tempUser + "S SELECT * FROM " + tblName4 + " WHERE person_oid=" + tempUser + " ORDER BY starttime DESC LIMIT " + rowsCellS + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                InsertData = "INSERT INTO " + tblName5 + tempUser + "S SELECT * FROM " + tblName5 + " WHERE person_oid=" + tempUser + " ORDER BY starttime DESC LIMIT " + rowsActivityS + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                InsertData = "INSERT INTO " + tblName6 + tempUser + "S SELECT * FROM " + tblName6 + " WHERE person_oid=" + tempUser + " ORDER BY starttime DESC LIMIT " + rowsDeviceS + ";";
+                command4.CommandText = InsertData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                // DESC LIMIT sondan aldığı için tekrar Order by Starttime yapmak gerekiyor
+                //ALTER Table call4t order by starttime;
+                
+                alterData = "ALTER Table " + tblName3 + tempUser + "S ORDER BY starttime;";
+                command4.CommandText = alterData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                alterData = "ALTER Table " + tblName4 + tempUser + "S ORDER BY starttime;";
+                command4.CommandText = alterData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                alterData = "ALTER Table " + tblName5 + tempUser + "S ORDER BY starttime;";
+                command4.CommandText = alterData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
+
+                alterData = "ALTER Table " + tblName6 + tempUser + "S ORDER BY starttime;";
+                command4.CommandText = alterData;
+                logger.Items.Add(command4.CommandText);
+                command4.ExecuteNonQuery();
 
 
             }
