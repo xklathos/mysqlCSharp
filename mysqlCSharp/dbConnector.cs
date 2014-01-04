@@ -168,12 +168,12 @@ namespace mysqlCSharp
 
         }
 
-    
+
         private void ctID1_Click(object sender, EventArgs e) // Seçili tablo ismi için seçili 16 kullanıcıyı toplar Callspan16 CellSpan16 gibi
         {
             //CREATE table call5101Y select * from callspan((Yüzde 75 olan) where person_oid = 51 order by (RAND) LIMIT 270
-            //240 defa dönecek for loopu limit 18 diğerinde
-            // Test % 25 olacak limit
+            //240 defa dönecek for loopu LIMIT 18 diğerinde
+            // Test % 25 olacak LIMIT
             // select person_oid,count(*) from callspan;
             // 25lik kısmı 170 kullanıcı altında olan varsa callspan için kod yazılacak
             //select a.starttime,count(*) from cellspan as b, callspan as a where b.starttime<a.starttime and a.starttime<b.endtime and a.person_oid= 7 and b.person_oid=7 group by a.starttime
@@ -296,21 +296,21 @@ namespace mysqlCSharp
             string tblName6 = "devicespan";
 
             // SQL Döngü Countları
-            double rowsCall=0;
-            double rowsCell=0;
-            double rowsActivity=0;
-            double rowsDevice=0;
+            double rowsCall = 0;
+            double rowsCell = 0;
+            double rowsActivity = 0;
+            double rowsDevice = 0;
             // T Countları İçin
-            double rowsCallT=0;
-            double rowsCellT=0;
-            double rowsActivityT=0;
-            double rowsDeviceT=0;
+            double rowsCallT = 0;
+            double rowsCellT = 0;
+            double rowsActivityT = 0;
+            double rowsDeviceT = 0;
             // S Countları İçin
-            double rowsCallS=0;
-            double rowsCellS=0;
-            double rowsActivityS=0;
-            double rowsDeviceS=0;
-            
+            double rowsCallS = 0;
+            double rowsCellS = 0;
+            double rowsActivityS = 0;
+            double rowsDeviceS = 0;
+
 
             for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
             {
@@ -320,12 +320,12 @@ namespace mysqlCSharp
                 string alterData;
                 string sql;
                 string tempUser = selectedUsers[j].ToString();
-                
+
                 MySqlCommand command = connection.CreateCommand();
-                
+
                 // Callspan
-                sql = "SELECT COUNT(*) FROM " + tblName3 + " where person_oid ="+tempUser+";";
-                command.CommandText = sql;               
+                sql = "SELECT COUNT(*) FROM " + tblName3 + " where person_oid =" + tempUser + ";";
+                command.CommandText = sql;
                 rowsCall = Convert.ToDouble(command.ExecuteScalar());
                 logger.Items.Add(command.CommandText);
                 // Cellspan
@@ -412,7 +412,7 @@ namespace mysqlCSharp
 
 
                 // T lerinin yapılması
-                InsertData = "INSERT INTO " + tblName3 + tempUser + "T SELECT * FROM " + tblName3 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT "+rowsCallT+";";
+                InsertData = "INSERT INTO " + tblName3 + tempUser + "T SELECT * FROM " + tblName3 + " WHERE person_oid=" + tempUser + " ORDER BY starttime LIMIT " + rowsCallT + ";";
                 command4.CommandText = InsertData;
                 logger.Items.Add(command4.CommandText);
                 command4.ExecuteNonQuery();
@@ -455,7 +455,7 @@ namespace mysqlCSharp
 
                 //DESC LIMIT sondan aldığı için tekrar Order by Starttime yapmak gerekiyor
                 //ALTER Table call4t order by starttime;
-                
+
                 alterData = "ALTER Table " + tblName3 + tempUser + "S ORDER BY starttime;";
                 command4.CommandText = alterData;
                 logger.Items.Add(command4.CommandText);
@@ -481,7 +481,7 @@ namespace mysqlCSharp
 
         }
 
-        private void cDataset_Click(object sender, EventArgs e)
+        private void cDataset_Click(object sender, EventArgs e)  // yeni tabloları oluşturdu , 270 18 gibi girilen sayılara göre rand ayırdı . PIDlerini doldurdu
         {
             int CallYNo = 270;
             int CallNNo = 18;
@@ -491,139 +491,418 @@ namespace mysqlCSharp
             int ActvNNo = 36;
             int DevcYNo = 360;
             int DevcNNo = 24;
-
+            string YES = "YES";
+            string NO = "NO";
             string createTable;
+            string updatePID;
+            string dataSet;
+            string InsertInto;
 
-            MySqlCommand command = connection.CreateCommand();
+            MySqlCommand commandD = connection.CreateCommand();
+            MySqlCommand commandY = connection.CreateCommand();
+            MySqlCommand commandDS = connection.CreateCommand();
+            MySqlCommand commandDX = connection.CreateCommand();
+            //Create table call5101Y select * from callspan%75 where person-oid=51 order by RAND() LIMIT 270
 
-            //Create table call5101Y select * from callspan%75 where person-oid=51 order by Rand() limit 270
             for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
             {
                 string tempUser = selectedUsers[j].ToString();
 
-                     for (int i = 1; i <= 15; i++)
-                     {
-                         
-                             if(i<10){
+                for (int i = 1; i <= 15; i++)
+                {
 
-                                 //CallSpan Y
-                                 createTable = "CREATE TABLE CALL" + tempUser + "0" + i + "Y SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CallYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                    if (i < 10)
+                    {
 
-                                 //CallSpan N
-                                 createTable = "CREATE TABLE CALL" + tempUser + "0" + i + "N SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CallNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CallSpan Y
+                        createTable = "CREATE TABLE CALL" + tempUser + "0" + i + "Y SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallYNo + ";";
+                        updatePID = "UPDATE CALL" + tempUser + "0" + i + "Y SET PID = \"YES\" ;";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-
-                                 //CellSpan Y
-                                 createTable = "CREATE TABLE CELL" + tempUser + "0" + i + "Y SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CellYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
-
-                                 //CellSpan N
-                                 createTable = "CREATE TABLE CELL" + tempUser + "0" + i + "N SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CellNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CallSpan N
+                        createTable = "CREATE TABLE CALL" + tempUser + "0" + i + "N SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallNNo + ";";
+                        updatePID = "UPDATE CALL" + tempUser + "0" + i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
 
-                                 //ActiviySpan Y
-                                 createTable = "CREATE TABLE ACTIVITY" + tempUser + "0" + i + "Y SELECT * from activity" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + ActvYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CellSpan Y
+                        createTable = "CREATE TABLE CELL" + tempUser + "0" + i + "Y SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellYNo + ";";
+                        updatePID = "UPDATE CELL" + tempUser + "0" + i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                                 //ActivitySpan N
-                                 createTable = "CREATE TABLE ACTIVITY" + tempUser + "0" + i + "N SELECT * from activity" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + ActvNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
-
-                                 //DeviceSpan Y
-                                 createTable = "CREATE TABLE DEVICE" + tempUser + "0" + i + "Y SELECT * from device" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + DevcYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
-
-                                 //DeviceSpan N
-                                 createTable = "CREATE TABLE DEVICE" + tempUser + "0" + i + "N SELECT * from device" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + DevcNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
-
-                             }
-
-                             if (i >= 10)
-
-                             {
-
-                                 //CallSpan Y
-                                 createTable = "CREATE TABLE CALL" + tempUser + i + "Y SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CallYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
-
-                                 //CallSpan N
-                                 createTable = "CREATE TABLE CALL" + tempUser +  i + "N SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CallNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CellSpan N
+                        createTable = "CREATE TABLE CELL" + tempUser + "0" + i + "N SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellNNo + ";";
+                        updatePID = "UPDATE CELL" + tempUser + "0" + i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
 
-                                 //CellSpan Y
-                                 createTable = "CREATE TABLE CELL" + tempUser + i + "Y SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CellYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //ActiviySpan Y
+                        createTable = "CREATE TABLE ACTIVITY" + tempUser + "0" + i + "Y SELECT * from activityspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvYNo + ";";
+                        updatePID = "UPDATE ACTIVITY" + tempUser + "0" + i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                                 //CellSpan N
-                                 createTable = "CREATE TABLE CELL" + tempUser +  i + "N SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + CellNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //ActivitySpan N
+                        createTable = "CREATE TABLE ACTIVITY" + tempUser + "0" + i + "N SELECT * from activityspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvNNo + ";";
+                        updatePID = "UPDATE ACTIVITY" + tempUser + "0" + i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                        //DeviceSpan Y
+                        createTable = "CREATE TABLE DEVICE" + tempUser + "0" + i + "Y SELECT * from devicespan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcYNo + ";";
+                        updatePID = "UPDATE DEVICE" + tempUser + "0" + i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                        //DeviceSpan N
+                        createTable = "CREATE TABLE DEVICE" + tempUser + "0" + i + "N SELECT * from devicespan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcNNo + ";";
+                        updatePID = "UPDATE DEVICE" + tempUser + "0" + i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                    }
+
+                    if (i >= 10)
+                    {
+
+                        //CallSpan Y
+                        createTable = "CREATE TABLE CALL" + tempUser + i + "Y SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallYNo + ";";
+                        updatePID = "UPDATE CALL" + tempUser + i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                        //CallSpan N
+                        createTable = "CREATE TABLE CALL" + tempUser + i + "N SELECT * from callspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallNNo + ";";
+                        updatePID = "UPDATE CALL" + tempUser +  i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
 
-                                 //ActiviySpan Y
-                                 createTable = "CREATE TABLE ACTIVITY" + tempUser +  i + "Y SELECT * from activity" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + ActvYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CellSpan Y
+                        createTable = "CREATE TABLE CELL" + tempUser + i + "Y SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellYNo + ";";
+                        updatePID = "UPDATE CELL" + tempUser +  i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                                 //ActivitySpan N
-                                 createTable = "CREATE TABLE ACTIVITY" + tempUser +  i + "N SELECT * from activity" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + ActvNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //CellSpan N
+                        createTable = "CREATE TABLE CELL" + tempUser + i + "N SELECT * from cellspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellNNo + ";";
+                        updatePID = "UPDATE CELL" + tempUser + i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                                 //DeviceSpan Y
-                                 createTable = "CREATE TABLE DEVICE" + tempUser +  i + "Y SELECT * from device" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + DevcYNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
 
-                                 //DeviceSpan N
-                                 createTable = "CREATE TABLE DEVICE" + tempUser +  i + "N SELECT * from device" + tempUser + "t WHERE person_oid=" + tempUser + "ORDER BY Rand() lIMIT " + DevcNNo + ";";
-                                 command.CommandText = createTable;
-                                 logger.Items.Add(command.CommandText);
-                                 command.ExecuteNonQuery();
+                        //ActiviySpan Y
+                        createTable = "CREATE TABLE ACTIVITY" + tempUser + i + "Y SELECT * from activityspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvYNo + ";";
+                        updatePID = "UPDATE ACTIVITY" + tempUser +  i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                             }
+                        //ActivitySpan N
+                        createTable = "CREATE TABLE ACTIVITY" + tempUser + i + "N SELECT * from activityspan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvNNo + ";";
+                        updatePID = "UPDATE ACTIVITY" + tempUser +  i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
 
-                     }
+                        //DeviceSpan Y
+                        createTable = "CREATE TABLE DEVICE" + tempUser + i + "Y SELECT * from devicespan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcYNo + ";";
+                        updatePID = "UPDATE DEVICE" + tempUser +  i + "Y SET PID = \"YES\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                        //DeviceSpan N
+                        createTable = "CREATE TABLE DEVICE" + tempUser + i + "N SELECT * from devicespan" + tempUser + "t WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcNNo + ";";
+                        updatePID = "UPDATE DEVICE" + tempUser +  i + "N SET PID = \"NO\";";
+                        commandD.CommandText = createTable;
+                        commandY.CommandText = updatePID;
+                        logger.Items.Add(commandD.CommandText);
+                        logger.Items.Add(commandY.CommandText);
+                        commandD.ExecuteNonQuery();
+                        commandY.ExecuteNonQuery();
+
+                    }
+
+                }
 
 
             }
-        }
 
+            //Message Box
+            MessageBox.Show("CALL, CELL, ACTIVITY, DEVICE Spans were divided and filled to Y and N for 15 Times \n PID filled Yes and No respectively");
+
+            for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
+            {
+                string tempUser = selectedUsers[j].ToString();
+
+                for (int i = 1; i <= 15; i++)
+                {
+
+                    if (i < 10)
+                    {
+
+                        // DATASETCALL için
+                        dataSet = "CREATE TABLE DataSetCALL" + tempUser + "_0" + i + " SELECT * from call" + tempUser + "0" + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallYNo + ";";
+                        commandDS.CommandText = dataSet;
+                        logger.Items.Add(commandDS.CommandText);
+                        commandDS.ExecuteNonQuery();
+
+                            for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                            {
+                                string currUser = selectedUsers[curr].ToString();
+
+                                    if (tempUser.Equals(currUser))
+                                     {
+                                        continue;
+                                     }
+                                    else
+                                     {
+                                         InsertInto = "INSERT INTO DataSetCALL" + tempUser + "_0" + i + " SELECT * from call" + currUser + "0" + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + CallNNo + ";";
+                                         commandDX.CommandText = InsertInto;
+                                         logger.Items.Add(commandDX.CommandText);
+                                         commandDX.ExecuteNonQuery();
+                                     }
+
+                            }
+                            // DATASETCELL için
+                            dataSet = "CREATE TABLE DataSetCELL" + tempUser + "_0" + i + " SELECT * from cell" + tempUser + "0" + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellYNo + ";";
+                            commandDS.CommandText = dataSet;
+                            logger.Items.Add(commandDS.CommandText);
+                            commandDS.ExecuteNonQuery();
+
+                            for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                            {
+                                string currUser = selectedUsers[curr].ToString();
+
+                                if (tempUser.Equals(currUser))
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    InsertInto = "INSERT INTO DataSetCELL" + tempUser + "_0" + i + " SELECT * from cell" + currUser + "0" + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + CellNNo + ";";
+                                    commandDX.CommandText = InsertInto;
+                                    logger.Items.Add(commandDX.CommandText);
+                                    commandDX.ExecuteNonQuery();
+                                }
+
+                            }
+                            // DATASETACTIVITY için
+                            dataSet = "CREATE TABLE DataSetACTIVITY" + tempUser + "_0" + i + " SELECT * from activity" + tempUser + "0" + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvYNo + ";";
+                            commandDS.CommandText = dataSet;
+                            logger.Items.Add(commandDS.CommandText);
+                            commandDS.ExecuteNonQuery();
+
+                            for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                            {
+                                string currUser = selectedUsers[curr].ToString();
+
+                                if (tempUser.Equals(currUser))
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    InsertInto = "INSERT INTO DataSetACTIVITY" + tempUser + "_0" + i + " SELECT * from activity" + currUser + "0" + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + ActvNNo + ";";
+                                    commandDX.CommandText = InsertInto;
+                                    logger.Items.Add(commandDX.CommandText);
+                                    commandDX.ExecuteNonQuery();
+                                }
+
+                            }
+                            // DATASETDEVICE için
+                            dataSet = "CREATE TABLE DataSetDEVICE" + tempUser + "_0" + i + " SELECT * from device" + tempUser + "0" + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcYNo + ";";
+                            commandDS.CommandText = dataSet;
+                            logger.Items.Add(commandDS.CommandText);
+                            commandDS.ExecuteNonQuery();
+
+                            for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                            {
+                                string currUser = selectedUsers[curr].ToString();
+
+                                if (tempUser.Equals(currUser))
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    InsertInto = "INSERT INTO DataSetDEVICE" + tempUser + "_0" + i + " SELECT * from device" + currUser + "0" + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + DevcNNo + ";";
+                                    commandDX.CommandText = InsertInto;
+                                    logger.Items.Add(commandDX.CommandText);
+                                    commandDX.ExecuteNonQuery();
+                                }
+
+                            }
+
+                    }
+
+                    if (i >= 10)
+                    {
+
+                        // DATASETCALL için
+                        dataSet = "CREATE TABLE DataSetCALL" + tempUser + "_" + i + " SELECT * from call" + tempUser + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallYNo + ";";
+                        commandDS.CommandText = dataSet;
+                        logger.Items.Add(commandDS.CommandText);
+                        commandDS.ExecuteNonQuery();
+
+                        for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                        {
+                            string currUser = selectedUsers[curr].ToString();
+
+                            if (tempUser.Equals(currUser))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                InsertInto = "INSERT INTO DataSetCALL" + tempUser + "_" + i + " SELECT * from call" + currUser + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + CallNNo + ";";
+                                commandDX.CommandText = InsertInto;
+                                logger.Items.Add(commandDX.CommandText);
+                                commandDX.ExecuteNonQuery();
+                            }
+
+                        }
+                        // DATASETCELL için
+                        dataSet = "CREATE TABLE DataSetCELL" + tempUser + "_" + i + " SELECT * from cell" + tempUser + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellYNo + ";";
+                        commandDS.CommandText = dataSet;
+                        logger.Items.Add(commandDS.CommandText);
+                        commandDS.ExecuteNonQuery();
+
+                        for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                        {
+                            string currUser = selectedUsers[curr].ToString();
+
+                            if (tempUser.Equals(currUser))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                InsertInto = "INSERT INTO DataSetCELL" + tempUser + "_" + i + " SELECT * from cell" + currUser + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + CellNNo + ";";
+                                commandDX.CommandText = InsertInto;
+                                logger.Items.Add(commandDX.CommandText);
+                                commandDX.ExecuteNonQuery();
+                            }
+
+                        }
+                        // DATASETACTIVITY için
+                        dataSet = "CREATE TABLE DataSetACTIVITY" + tempUser + "_" + i + " SELECT * from activity" + tempUser + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvYNo + ";";
+                        commandDS.CommandText = dataSet;
+                        logger.Items.Add(commandDS.CommandText);
+                        commandDS.ExecuteNonQuery();
+
+                        for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                        {
+                            string currUser = selectedUsers[curr].ToString();
+
+                            if (tempUser.Equals(currUser))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                InsertInto = "INSERT INTO DataSetACTIVITY" + tempUser + "_" + i + " SELECT * from activity" + currUser + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + ActvNNo + ";";
+                                commandDX.CommandText = InsertInto;
+                                logger.Items.Add(commandDX.CommandText);
+                                commandDX.ExecuteNonQuery();
+                            }
+
+                        }
+                        // DATASETDEVICE için
+                        dataSet = "CREATE TABLE DataSetDEVICE" + tempUser + "_" + i + " SELECT * from device" + tempUser + i + "Y WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcYNo + ";";
+                        commandDS.CommandText = dataSet;
+                        logger.Items.Add(commandDS.CommandText);
+                        commandDS.ExecuteNonQuery();
+
+                        for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                        {
+                            string currUser = selectedUsers[curr].ToString();
+
+                            if (tempUser.Equals(currUser))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                InsertInto = "INSERT INTO DataSetDEVICE" + tempUser + "_" + i + " SELECT * from device" + currUser + i + "N WHERE person_oid=" + currUser + " ORDER BY RAND() LIMIT " + DevcNNo + ";";
+                                commandDX.CommandText = InsertInto;
+                                logger.Items.Add(commandDX.CommandText);
+                                commandDX.ExecuteNonQuery();
+                            }
+
+                        }
+                    }
+
+                }// end of 15 for loop
+
+            }//end of userselect For
+
+            MessageBox.Show("DataSET prep completed.");
+
+
+
+        }
     }
  }
-
-
-
-
-
