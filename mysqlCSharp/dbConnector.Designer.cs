@@ -52,6 +52,7 @@
             this.fillCTID = new System.Windows.Forms.Button();
             this.dividerSmall = new System.Windows.Forms.Button();
             this.tAndS = new System.Windows.Forms.Button();
+            this.cDataset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -292,12 +293,23 @@
             this.tAndS.UseVisualStyleBackColor = true;
             this.tAndS.Click += new System.EventHandler(this.tAndS_Click);
             // 
+            // cDataset
+            // 
+            this.cDataset.Location = new System.Drawing.Point(626, 152);
+            this.cDataset.Name = "cDataset";
+            this.cDataset.Size = new System.Drawing.Size(120, 23);
+            this.cDataset.TabIndex = 25;
+            this.cDataset.Text = "Create DATASET";
+            this.cDataset.UseVisualStyleBackColor = true;
+            this.cDataset.Click += new System.EventHandler(this.cDataset_Click);
+            // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(787, 434);
+            this.Controls.Add(this.cDataset);
             this.Controls.Add(this.tAndS);
             this.Controls.Add(this.dividerSmall);
             this.Controls.Add(this.fillCTID);
@@ -347,6 +359,7 @@
         private System.Windows.Forms.Button fillCTID;
         private System.Windows.Forms.Button dividerSmall;
         private System.Windows.Forms.Button tAndS;
+        private System.Windows.Forms.Button cDataset;
     }
 }
 
