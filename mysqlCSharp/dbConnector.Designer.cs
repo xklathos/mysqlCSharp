@@ -53,6 +53,7 @@
             this.dividerSmall = new System.Windows.Forms.Button();
             this.tAndS = new System.Windows.Forms.Button();
             this.cDataset = new System.Windows.Forms.Button();
+            this.createTest = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -265,6 +266,7 @@
             // 
             // fillCTID
             // 
+            this.fillCTID.Enabled = false;
             this.fillCTID.Location = new System.Drawing.Point(626, 65);
             this.fillCTID.Name = "fillCTID";
             this.fillCTID.Size = new System.Drawing.Size(120, 23);
@@ -303,12 +305,23 @@
             this.cDataset.UseVisualStyleBackColor = true;
             this.cDataset.Click += new System.EventHandler(this.cDataset_Click);
             // 
+            // createTest
+            // 
+            this.createTest.Location = new System.Drawing.Point(626, 181);
+            this.createTest.Name = "createTest";
+            this.createTest.Size = new System.Drawing.Size(120, 23);
+            this.createTest.TabIndex = 26;
+            this.createTest.Text = "Create TEST";
+            this.createTest.UseVisualStyleBackColor = true;
+            this.createTest.Click += new System.EventHandler(this.createTest_Click);
+            // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(787, 434);
+            this.Controls.Add(this.createTest);
             this.Controls.Add(this.cDataset);
             this.Controls.Add(this.tAndS);
             this.Controls.Add(this.dividerSmall);
@@ -360,6 +373,7 @@
         private System.Windows.Forms.Button dividerSmall;
         private System.Windows.Forms.Button tAndS;
         private System.Windows.Forms.Button cDataset;
+        private System.Windows.Forms.Button createTest;
     }
 }
 

@@ -901,8 +901,149 @@ namespace mysqlCSharp
 
             MessageBox.Show("DataSET prep completed.");
 
+            // SELECT  COUNT(*) FROM calltest2_51;
+
 
 
         }
+
+        private void createTest_Click(object sender, EventArgs e)
+        {
+            //Create table calltest2_51 select * from callspan51s where person-oid=51 order by Rand() limit 170
+            //Create table calltest1_51 select * from calltest2_51 order by Rand() limit 90
+            //Delete from calltest2_51 limit 90
+            //Insert into calltest2_51 select * from calltest1_51 order by rand limit 80-(SELECT  COUNT(*) FROM calltest2_51)
+
+            int CallS1 = 90;
+            int CallS2 = 80;
+            int CellS1 = 2400;
+            int CellS2 = 2000;
+            int ActvS1 = 180;
+            int ActvS2 = 160;
+            int DevcS1 = 120;
+            int DevcS2 = 100;
+            int Call = 170;
+            int Cell = 4400;
+            int Actv = 340;
+            int Devc = 220;
+
+            string YES = "YES";
+            string NO = "NO";
+
+            string insertInto;
+            string createTable;
+            string updatePID;
+            string dataSet;
+
+            MySqlCommand commandT = connection.CreateCommand();
+
+            for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
+            {
+                string tempUser = selectedUsers[j].ToString();
+
+
+                        //CallTESTS
+                        createTable = "CREATE TABLE CALLTEST2_"+ tempUser + " SELECT * from callspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallS1 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        createTable = "CREATE TABLE CALLTEST1_" + tempUser + " SELECT * from callspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CallS2 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                         //CellTESTS
+                        createTable = "CREATE TABLE CELLTEST2_"+ tempUser + " SELECT * from cellspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellS1 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        createTable = "CREATE TABLE CELLTEST1_" + tempUser + " SELECT * from cellspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + CellS2 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        //ActivityTESTS
+                        createTable = "CREATE TABLE ACTIVITYTEST2_"+ tempUser + " SELECT * from activityspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvS1 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        createTable = "CREATE TABLE ACTIVITYTEST1_" + tempUser + " SELECT * from activityspan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + ActvS2 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        //DeviceTESTS
+                        createTable = "CREATE TABLE DEVICETEST2_" + tempUser + " SELECT * from devicespan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcS1 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+
+                        createTable = "CREATE TABLE DEVICETEST1_" + tempUser + " SELECT * from devicespan" + tempUser + "s WHERE person_oid=" + tempUser + " ORDER BY RAND() LIMIT " + DevcS2 + ";";
+                        commandT.CommandText = createTable;
+                        logger.Items.Add(commandT.CommandText);
+                        commandT.ExecuteNonQuery();
+ 
+                }
+
+                for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
+                {
+                    string tempUser = selectedUsers[j].ToString();
+
+
+                        createTable = "CREATE TABLE DATATESTCALL"+tempUser+"TEST1 SELECT * from CALLTEST1_"+tempUser+";";
+
+                        for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                        {
+                            string currUser = selectedUsers[curr].ToString();
+
+                            if (tempUser.Equals(currUser))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                insertInto = "INSERT INTO DATATESTCALL" + tempUser +"TEST1 SELECT * from CALLTEST1_" + currUser+ ";";
+                                commandT.CommandText = insertInto;
+                                logger.Items.Add(commandT.CommandText);
+                                commandT.ExecuteNonQuery();
+
+                            }
+                        }
+    
+                }
+
+                for (int j = 0; j < usersSelected.Items.Count; j++)  // Her tablo için x kullancısının countunu al
+                {
+                    string tempUser = selectedUsers[j].ToString();
+
+
+                    createTable = "CREATE TABLE DATATESTCALL" + tempUser + "TEST2 SELECT * from CALLTEST2_" + tempUser + ";";
+
+                    for (int curr = 0; curr < usersSelected.Items.Count; curr++)
+                    {
+                        string currUser = selectedUsers[curr].ToString();
+
+                        if (tempUser.Equals(currUser))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            insertInto = "INSERT INTO DATATESTCALL" + tempUser + "TEST2 SELECT * from CALLTEST2_" + currUser + ";";
+                            commandT.CommandText = insertInto;
+                            logger.Items.Add(commandT.CommandText);
+                            commandT.ExecuteNonQuery();
+
+                        }
+                    }
+
+                }
+
+            }
+
+        }
     }
- }
+ 
