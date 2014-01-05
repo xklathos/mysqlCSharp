@@ -54,6 +54,7 @@
             this.tAndS = new System.Windows.Forms.Button();
             this.cDataset = new System.Windows.Forms.Button();
             this.createTest = new System.Windows.Forms.Button();
+            this.logtoTxt = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,7 +221,7 @@
             this.logger.FormattingEnabled = true;
             this.logger.Location = new System.Drawing.Point(12, 307);
             this.logger.Name = "logger";
-            this.logger.Size = new System.Drawing.Size(587, 108);
+            this.logger.Size = new System.Drawing.Size(587, 238);
             this.logger.TabIndex = 18;
             // 
             // panel1
@@ -315,12 +316,23 @@
             this.createTest.UseVisualStyleBackColor = true;
             this.createTest.Click += new System.EventHandler(this.createTest_Click);
             // 
+            // logtoTxt
+            // 
+            this.logtoTxt.Location = new System.Drawing.Point(12, 268);
+            this.logtoTxt.Name = "logtoTxt";
+            this.logtoTxt.Size = new System.Drawing.Size(103, 23);
+            this.logtoTxt.TabIndex = 27;
+            this.logtoTxt.Text = "Save to Txt File";
+            this.logtoTxt.UseVisualStyleBackColor = true;
+            this.logtoTxt.Click += new System.EventHandler(this.logtoTxt_Click);
+            // 
             // dbConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(787, 434);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(787, 554);
+            this.Controls.Add(this.logtoTxt);
             this.Controls.Add(this.createTest);
             this.Controls.Add(this.cDataset);
             this.Controls.Add(this.tAndS);
@@ -338,7 +350,7 @@
             this.Controls.Add(this.getTbls);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "dbConnector";
-            this.Text = "Fill CTID";
+            this.Text = "Dataset Ruler";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -374,6 +386,7 @@
         private System.Windows.Forms.Button tAndS;
         private System.Windows.Forms.Button cDataset;
         private System.Windows.Forms.Button createTest;
+        private System.Windows.Forms.Button logtoTxt;
     }
 }
 

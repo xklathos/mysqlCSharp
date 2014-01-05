@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections;
+using System.IO;
+using System.Diagnostics;
 
 namespace mysqlCSharp
 {
@@ -1269,6 +1271,23 @@ namespace mysqlCSharp
                 commandT.ExecuteNonQuery();
 
             }
+        }
+
+        private void logtoTxt_Click(object sender, EventArgs e)
+        {
+            if (logger.Items.Count > 0)
+            {
+
+                using (TextWriter TW = new StreamWriter("list.txt"))
+                {
+                    foreach (string itemText in logger.Items)
+                    {
+                        TW.WriteLine(itemText);
+                    }
+                }
+            }
+
+            Process.Start("list.txt");
         }
 
     }
